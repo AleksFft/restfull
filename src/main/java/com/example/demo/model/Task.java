@@ -12,7 +12,6 @@ import com.example.demo.model.enums.TaskStatus;
 import com.example.demo.model.enums.TaskType;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.NonNull;
 import lombok.experimental.Accessors;
 import lombok.experimental.FieldNameConstants;
 import org.hibernate.annotations.Type;
@@ -28,7 +27,7 @@ import java.util.List;
 @Data
 @Entity
 @Table(name = "migrc_task")
-@EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = false)
+@EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = true)
 @FieldNameConstants
 @Accessors(chain = true)
 public class Task extends BaseEntity implements HasPersistContext<Task>, HasStatus<TaskStatus, Task> {

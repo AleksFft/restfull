@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.model.common.FilterTaskDto;
 import com.example.demo.repository.TaskRepository;
 import com.example.demo.util.FilterUserDto;
 import lombok.RequiredArgsConstructor;
@@ -19,6 +20,10 @@ public class BackgroundTaskRootService {
     public Page<FilterUserDto> getAllUserIds(String fullTextQuery, Pageable pageable) {
         return taskRepository.getTaskUsers(formatFullTextQuery(fullTextQuery), pageable)
                 .map(u -> new FilterUserDto(u.getId(), u.getName()));
+    }
+
+    public Page<FilterTaskDto> getAllTaskIds(String fullTextQuery, Pageable pageable) {
+        return taskRepository.getTasks(formatFullTextQuery(fullTextQuery), pageable);
     }
 
     private static String formatFullTextQuery(String fullTextQuery) {

@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.model.common.FilterTaskDto;
 import com.example.demo.service.BackgroundTaskRootService;
 import com.example.demo.util.FilterUserDto;
 import com.example.demo.util.GenericPage;
@@ -38,5 +39,16 @@ public class BackgroundTaskRootResourceImpl {
                                                     @ApiIgnore Pageable pageable) {
         Page<FilterUserDto> allUserIds = statisticsService.getAllUserIds(fullTextQuery, pageable);
         return new GenericPage<>(allUserIds.getContent(), allUserIds.getTotalElements());
+    }
+
+//    @Trace
+    @GetMapping(value = "/allTaskIds")
+    @ResponseStatus(HttpStatus.OK)
+    @ApiOperation("Справочник: ID задач фоновой миграции")
+//    @PreAuthorize("hasStaticPermission('BACKGROUND_MIGRATION_TASK_VIEW')")
+    public GenericPage<FilterTaskDto> getAllTaskIds(@RequestParam(value = "fullTextQuery", required = false) String fullTextQuery,
+                                                    @ApiIgnore Pageable pageable) {
+        Page<FilterTaskDto> allTaskIds = statisticsService.getAllTaskIds(fullTextQuery, pageable);
+        return new GenericPage<>(allTaskIds.getContent(), allTaskIds.getTotalElements());
     }
 }
