@@ -1,0 +1,10 @@
+.idea
+*.iml
+out
+gen
+build
+target/
+log/
+ObjectStore
+.DS_Store
+.java-version
